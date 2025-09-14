@@ -15,6 +15,8 @@ import java.util.*;
 
 public class AnaEkranController {
 
+    // deneme 123
+
     private final AnaEkranView anaEkranView;
     private final NotEditorView notEditorView;
     private final NotEditorController noteEditorController;
