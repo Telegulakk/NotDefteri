@@ -1,0 +1,159 @@
+
+.note-button {
+    -fx-pref-width: 100px;   /* genişliği sabitler */
+    -fx-pref-height: 30px;   /* yüksekliği sabitler */
+    -fx-font-size: 12px;
+    -fx-wrap-text: false;    /* taşarsa alt satıra geçmesin */
+    -fx-text-overrun: ellipsis; /* taşarsa üç nokta koy */
+}
+
+.ana-ekran {
+    -fx-background-color: lightblue;
+}
+
+/* TextField stili - bunda bir değişiklik yok, doğru çalışıyor */
+.transparent-text-field {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius: 8px;
+    -fx-text-fill: black;
+    -fx-padding: 10px;
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-font-size: 18px;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.2), 5, 0, 0, 0);
+}
+
+/* TextArea stili - Daha kapsamlı ve güçlü ayarlar */
+.transparent-text-area {
+    /* TextArea'nın genel arka planı (kenarlık ve padding alanı dahil) */
+    /*bu ayarı çıkarınca arkaplan beyaz oluyor*/
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+
+    /* === EN ÖNEMLİ AYAR: Metnin yazıldığı içeriğin arka planı === */
+    /* JavaFX'in bu ayarı kullanması beklenir. */
+    -fx-control-inner-background: rgba(255, 255, 255, 0.15);
+
+    /* Metin rengi (arka plana göre ayarlanmalı) */
+    -fx-text-fill: black; /* Eğer arka plan koyu olsaydı beyaz tercih edilebilirdi */
+
+    /* Diğer stil ayarlarınız (bunlar genellikle sorun çıkarmaz) */
+    -fx-background-insets: 0;
+    -fx-background-radius: 8px; /* Bu, -fx-background-color için geçerli olur */
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-padding: 3px;
+    -fx-font-size: 16px;
+    -fx-highlight-fill: lightgray;
+    -fx-highlight-text-fill: black;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.2), 5, 0, 0, 0);
+}
+
+/*TextArea, içinde bir ScrollPane barındırır. Bu ScrollPane de bir Viewport ve
+  en sonunda .content (metnin olduğu alan) içerir.
+  Bu ara katmanların, -fx-control-inner-background ile ayarladığımız rengi
+  örtmemesi için arka planlarını şeffaf yapmalıyız.
+  Aşağıdaki kurallar, .transparent-text-area sınıfına sahip bir TextArea'nın İÇİNDEKİ
+  bu bileşenleri hedefler, bu da CSS özgüllüğünü artırır.
+ */
+
+
+.text-area .scroll-pane .scroll-bar:vertical {
+    -fx-background-color: #f0f0f0;
+}
+
+.text-area .scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: #f0f0f0;
+}
+
+.text-area .scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #888;
+    -fx-background-radius: 5px;
+}
+
+.text-area .scroll-pane .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+/* ScrollPane kapsayıcı: Arka planı şeffaf yap */
+.transparent-text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+/* Viewport (görüntü alanı): Arka planı şeffaf yap */
+.transparent-text-area .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Scroll bar (dikey ve yatay): Şeffaf arka plan */
+.transparent-text-area .scroll-pane .scroll-bar:vertical,
+.transparent-text-area .scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+/* Scroll bar içi "track" (çubuğun yolu): Şeffaf */
+.transparent-text-area .scroll-pane .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+/* Scroll bar "thumb" (tutma yeri): Hafif şeffaf görünüm veya tamamen gizli */
+.transparent-text-area .scroll-pane .scroll-bar .thumb {
+    -fx-background-color: rgba(100, 100, 100, 0.3); /* %30 opak gri */
+    -fx-background-radius: 5px;
+}
+
+/*Bu da kaydırma yolunu gereksiz beyazlık olmadan sade tutar.*/
+.transparent-text-area .scroll-pane .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.transparent-text-area .scroll-pane .scroll-bar .thumb {
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-padding: 2px;
+    -fx-opacity: 0.0; /* görünmez */
+    -fx-transition: all 0.2s ease;
+}
+
+.transparent-text-area .scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.25); /* görünürleşsin */
+    -fx-opacity: 1.0;
+}
+
+
+/* Dikey scroll bar’ı kalınlaştır */
+.transparent-text-area .scroll-pane .scroll-bar:vertical {
+    -fx-pref-width: 12px; /* Varsayılan genelde 8px'tir */
+}
+
+/* Yatay scroll bar’ı kalınlaştır */
+.transparent-text-area .scroll-pane .scroll-bar:horizontal {
+    -fx-pref-height: 12px;
+}
+
+/* Scroll bar okları ve diğer parçaçıklar varsa, onları da sıfırla */
+.transparent-text-area .scroll-pane .scroll-bar .increment-button,
+.transparent-text-area .scroll-pane .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+
+
+
+
+/*.transparent-text-area içindeki asıl metin alanı (.content) için:
+  Bunun arka planı şeffaf olmalı ki, TextArea'nın -fx-control-inner-background özelliği
+  tarafından ayarlanan renk (bizim durumumuzda yarı saydam beyaz) görünsün.
+  Varsayılan temada, .content alanı genellikle beyaz bir arka plana sahiptir.
+  Bu kural, bu varsayılan beyazı geçersiz kılmayı hedefler.
+ */
+.transparent-text-area .content {
+    -fx-background-color: transparent;
+    /* Eğer içerik alanının da kenarlarının yuvarlak olmasını isterseniz,
+       buraya da -fx-background-radius ekleyebilirsiniz. Örneğin:
+       -fx-background-radius: 7px; (Dış kenarlıktan biraz daha küçük)
+       Ancak genellikle -fx-control-inner-background bu tür şeyleri dikkate alır.
+    */
+}
